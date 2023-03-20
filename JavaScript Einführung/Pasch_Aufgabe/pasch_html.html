@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>Pasch mit Überprüfung</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      margin: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<!-- +++++++++++++++++++ -->
+<!-- +    HTML-TEIL    + -->
+<!-- +++++++++++++++++++ -->
+
+<br />
+
+<img id="z1" src="0.png" />
+<img id="z2" src="0.png" />
+<img id="z3" src="0.png" />
+
+<br />
+<img id="ergebnis" src="haken.png" />
+
+<br />
+<p id="paschstatistik">Paschstatistik: </p>
+
+<!-- +++++++++++++++++++ -->
+<!-- + JAVASCRIPT-TEIL + -->
+<!-- +++++++++++++++++++ -->
+
+<script>
+  // Button holen
+  //let goButton = document.getElementById('gobutton');
+  let paschstatistik = document.getElementById('paschstatistik');
+  let versuche = 0;
+  let pasch = 0;
+
+  //EventListener auf Button
+  //goButton.addEventListener('click', go);
+
+  //Timer
+  timer = setInterval(go, 60);
+
+  //Funktion definieren
+  function go() {
+    versuche++;
+    zz1 = Math.floor(Math.random() * 10 + 0);
+    zz2 = Math.floor(Math.random() * 10 + 0);
+    zz3 = Math.floor(Math.random() * 10 + 0);
+
+    //1. Relevantes JS-Objekt ermitteln
+    imgObj1 = document.getElementById('z1');
+    //2. Methoden/Eigenschaften nutzen
+    imgObj1.setAttribute('src', zz1 + '.png');
+
+    //1. Relevantes JS-Objekt ermitteln
+    imgObj2 = document.getElementById('z2');
+    //2. Methoden/Eigenschaften nutzen
+    imgObj2.setAttribute('src', zz2 + '.png');
+
+    //1. Relevantes JS-Objekt ermitteln
+    imgObj3 = document.getElementById('z3');
+    //2. Methoden/Eigenschaften nutzen
+    imgObj3.setAttribute('src', zz3 + '.png');
+
+    if (zz1 == '9.png' && zz2 == '9.png' && zz3 == '9.png') {
+      bildname = 'haken';
+        pasch++;
+        clearInterval(timer);
+    } else {
+      bildname = 'kreuz';
+    }
+    imgObjE = document.getElementById('ergebnis');
+    //2. Methoden/Eigenschaften nutzen
+    imgObjE.setAttribute('src', bildname + '.png');
+
+    paschstatistik.innerHTML = "Paschstatistik: " + pasch + " von " + versuche + " Versuchen";
+  }
+
+</script>
+</body>
+</html>
